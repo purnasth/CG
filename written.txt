@@ -1,0 +1,96 @@
+
+Digital Differential Analyzer Algorithm (DDA)
+
+DDA is a scan conversion line drawing algorithm based on calculation Δy or Δx using Δy = mΔx equation. We sample the line at unit intervals in one coordinate and find corresponding integer nearest the line path for other coordinate.
+
+Algorithm : 
+
+Step 1: Start the program.
+Step 2: Declare the variables x1, y1, x2, y2, dx, dy, x, y.
+Step 3: Enter the values of x1, y1, x2, y2.
+Step 4: Calculate dx = x2 - x1 and dy = y2 - y1.
+Step 5: If |dx| > |dy| then steps = |dx| else steps = |dy|.
+Step 6: Calculate xinc = dx / steps and yinc = dy / steps.
+Step 7: Set x = x1 and y = y1.
+Step 8: Plot pixel (x, y).
+Step 9: x = x + xinc and y = y + yinc and set pixels (Round(x), Round(y))
+Step 10: Repeat step 9 until x = x2 and y = y2.
+Step 11: Stop the program.
+<newPage/>
+Source Code:
+
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+int main()
+{
+    int gd = DETECT, gm, i;
+    float x, y, dx, dy, steps;
+    int x0, x1, y0, y1;
+    initgraph(&gd, &gm, "");
+    setbkcolor(WHITE);
+    printf("Enter initial points x0 and y0: ");
+    scanf("%d%d", &x0, &y0);
+    printf("Enter final points x1 and y1: ");
+    scanf("%d%d", &x1, &y1);
+    dx = (float)(x1 - x0);
+    dy = (float)(y1 - y0);
+    if (dx >= dy) {
+        steps = dx;
+    } else {
+        steps = dy;
+    }
+    dx = dx / steps;
+    dy = dy / steps;
+    x = x0;
+    y = y0;
+    i = 1;
+    while (i <= steps) {
+        putpixel(x, y, WHITE);
+        x += dx;
+        y += dy;
+        i = i + 1;
+    }
+    getch();
+    closegraph();
+    return 0;
+}
+<newPage/>
+
+Conclusion:
+
+Hence, we were able to generate a line using DDA algorithm.
+
+Output:
+
+Purna Shrestha
+
+Enter initial points x0 and y0: 100 100
+Enter final points x1 and y1: 200 200
+<newPage/>
+
+Breseham's Line Drawing Algorithm
+
+Theory:
+
+Bresenham's line algorithm is an algorithm that determines the points of an n-dimensional raster that should be selected in order to form a close approximation to a straight line between two points. It requires less time, less memory and less processing power.
+
+Algorithm:
+
+Step 1: Start the program.
+Step 2: Read two points P(x1, y1) and P(x2, y2).
+Step 3: Calculate dx = x2 - x1 and dy = y2 - y1.
+Step 4: Calculate Decision Parameter(P) 
+            P = 2dy - dx.
+Step 5: Set initial points x = x1 and y = y1 and i = 0.
+Step 6: Plot pixel (x, y).
+Step 7: If P < 0 then 
+            P = P + 2dy and x = x + 1.
+Step 8: Else
+            P = P + 2dy - 2dx 
+            x = x + 1 and y = y + 1.
+Step 9: Repeat step 6 to 8 until x = x2 and y = y2.
+Step 10: Stop the program.
+<newPage/>
+Source Code:
+
