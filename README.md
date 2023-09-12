@@ -1,1 +1,5 @@
-C:\Users\97798\OneDrive - Kathmandu BernHardt College\CSIT 3rd sem\ComputerGraphics\practical_file\source_code
+Table of contents:
+
+1. Implementation of Digital Differential Analyzer Algorithm (DDA).
+2. Implementation of Bresenham's line drawing algorithm (BLA).
+3. Implementation of Midpoint circle drawing algorithm.

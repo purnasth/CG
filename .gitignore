@@ -1,0 +1,15 @@
+# Ignore files with extension `.class` & `.exe`
+*.class
+*.exe
+
+# Ignore `bin` dir
+bin/
+# or
+*/bin/*
+
+# Unignore all `.exe` in `bin` dir
+!*/bin/*.exe
+
+# also ignore the .exe file which is inside the source_code folder
+
+source_code/*.exe

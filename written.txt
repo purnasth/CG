@@ -94,3 +94,149 @@ Step 10: Stop the program.
 <newPage/>
 Source Code:
 
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+
+int main()
+{
+    int x, y, x1, y1, x2, y2, p, dx, dy;
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+    printf("\nEnter the x-coordinate & y-coordinate of the first point: ");
+    scanf("%d%d", &x1, &y1);
+    printf("\nEnter the x-coordinate & y-coordinate of the second point: ");
+    scanf("%d%d", &x2, &y2);
+    x = x1;
+    y = y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
+    putpixel(x, y, RED);
+    p = (2 * dy - dx);
+    while (x <= x2)
+    {
+        if (p < 0) {
+            x = x + 1;
+            p = p + 2 * dy;
+        } else {
+            x = x + 1;
+            y = y + 1;
+            p = p + (2 * dy) - (2 * dx);
+        }
+        putpixel(x, y, 7);
+    }
+    getch();
+    closegraph();
+    return 0;
+}
+<newPage/>
+
+Conclusion:
+
+Hence, we were able to generate a line using Bresenham's line drawing algorithm.
+
+Output:
+
+Purna Shrestha
+
+Enter the x-coordinate & y-coordinate of the first point: 100 100
+Enter the x-coordinate & y-coordinate of the second point: 200 200
+<newPage/>
+
+Midpoint Circle Drawing Algorithm
+
+Theory:
+
+Midpoint circle algorithm is an algorithm used to determine the points needed for drawing a circle. It is commonly used in both computer graphics and graphics hardware to draw circles. It is a variant of Bresenham's line algorithm.
+
+Algorithm:
+
+Step 1: Start the program.
+Step 2: Input the radius of the circle 'r' & center of a circle (xc, yc).
+Step 3: Set the value of x = 0 and y = r such that (x0, y0) = (0, r).
+Step 4: Calculate the decision parameter P = 1 - r.
+Step 5: At xk position, calculate 
+            if P < 0 then 
+                P(k+1) = P(k) + 2x(k+1) + 1 
+                y(k+1) = yk 
+                xk = x(k+1).
+            else
+                P(k+1) = P(k) + 2x(k+1) + 1 - 2y(k+1) 
+                y(k+1) = y(k) - 1 
+                x(k+1) = xk.
+Step 6: Determine the symmetry points in other octants.
+Step 7: Move each calculated pixel position(x, y) to the center (xc, yc) and plot the calculated co-ordinate values x = x + xc and y = y + yc.
+Step 8: Repeat step 5 to 7 until x >= y.
+Step 9: Stop the program.
+<newPage/>
+
+Source Code:
+
+#include <stdio.h>
+#include <graphics.h>
+
+void circleMidpoint(int, int, int);
+void drawCircle(int, int, int, int);
+
+int main()
+{
+    int xc, yc, r;
+
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+    printf("Enter center coordinates of circle: ");
+    scanf("%d %d", &xc, &yc);
+    printf("Enter radius of circle: ");
+    scanf("%d", &r);
+    circleMidpoint(xc, yc, r);
+    getch();
+    return 0;
+}
+
+void circleMidpoint(int xc, int yc, int r)
+{
+    int x = 0, y = r;
+    int p = 1 - r;
+
+    while (x < y)
+    {
+        drawCircle(xc, yc, x, y);
+        x++;
+
+        if (p < 0)
+            p = p + 2 * x + 1;
+        else
+        {
+            y--;
+            p = p + 2 * (x - y) + 1;
+        }
+
+        drawCircle(xc, yc, x, y);
+        delay(50);
+    }
+}
+
+void drawCircle(int xc, int yc, int x, int y)
+{
+    putpixel(xc + x, yc + y, WHITE);
+    putpixel(xc - x, yc + y, WHITE);
+    putpixel(xc + x, yc - y, WHITE);
+    putpixel(xc - x, yc - y, WHITE);
+    putpixel(xc + y, yc + x, WHITE);
+    putpixel(xc - y, yc + x, WHITE);
+    putpixel(xc + y, yc - x, WHITE);
+    putpixel(xc - y, yc - x, WHITE);
+}
+<newPage/>
+
+Conclusion:
+
+Hence, we were able to generate a circle using Midpoint circle drawing algorithm.
+
+Output:
+
+Purna Shrestha
+
+Enter center coordinates of circle: 200 200
+Enter radius of circle: 100
+<newPage/>
