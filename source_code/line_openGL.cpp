@@ -1,4 +1,4 @@
-#ifdef __APPLE__
+#ifdef APPLE
 #include <GLUT/glut.h>
 #else
 #include <windows.h>
@@ -9,21 +9,20 @@
 void init(void)
 {
     glClearColor(0.0, 0.0, 0.0, 0.0);
-    glviewport(0, 0, 500, 500);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0.0, 500.0, 0.0, 500.0, 1, -1);
-    glOrthoidentity();
+    glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 }
 
 void display(void)
 {
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1.0, 1.0, 1.0);
-    glPointSize(13.0);
-    glBegin(GL_POINTS);
-    glVertex2i(275, 450);
-    glVertex2i(165, 25);
+    glLineWidth(3);
+    glBegin(GL_LINES);
+    glColor3f(1.0, 0.0, 1.0);
+    glVertex2f(0.2, 0.7);
+    glVertex2f(0.2, -0.5);
     glEnd();
     glFlush();
 }
@@ -31,10 +30,9 @@ void display(void)
 int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitwindowsize(500, 500);
-    glutInitWindowPosition(100, 100);
-    glutCreateWindow("Line");
+    glutInitWindowPosition(10, 10);
+    glutInitWindowSize(500, 500);
+    glutCreateWindow("****Purna Shrestha****");
     init();
     glutDisplayFunc(display);
     glutMainLoop();

@@ -6,7 +6,6 @@
 
 int main()
 {
-
 	int gd = DETECT, gm;
 	int x1, y1, x2, y2;
 	int wxmin, wymin, wxmax, wymax;
